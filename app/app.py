@@ -155,21 +155,6 @@ st.warning("⚠️ Critical operations require physical presence at the brewing 
 control_col1, control_col2 = st.columns(2)
 
 with control_col1:
-    st.write("Non-critical Parameters")
-
-    with st.form("non_critical_form"):
-        temp_adjustment = st.slider("Temperature Offset (±°C)", -2.0, 2.0, 0.0, 0.1)
-        data_notes = st.text_area("Batch Notes", "")
-        submitted = st.form_submit_button("Apply Changes")
-
-        if submitted:
-            result = api.send_command("set_temp_offset", temp_adjustment)
-            if result["success"]:
-                st.success("Non-critical parameters updated")
-            else:
-                st.error(result["message"])
-
-with control_col2:
     st.write("Critical Operations (Require Physical Access)")
 
     with st.form("critical_form"):
